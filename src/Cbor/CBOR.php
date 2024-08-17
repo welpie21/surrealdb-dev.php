@@ -26,6 +26,7 @@ use Surreal\Cbor\Types\RecordId;
 use Surreal\Cbor\Types\StringRecordId;
 use Surreal\Cbor\Types\Table;
 use Brick\Math\BigDecimal;
+use const Surreal\Cbor\Types\NONE;
 
 class CBOR
 {
@@ -139,7 +140,7 @@ class CBOR
 
             return match (CustomTag::tryFrom($tagged->tag)) {
                 CustomTag::SPEC_DATETIME => new DateTime($tagged->value),
-                CustomTag::NONE => new None(),
+                CustomTag::NONE => NONE,
 
                 CustomTag::TABLE => $tagged->value,
                 CustomTag::RECORD_ID => RecordId::fromArray($tagged->value),
